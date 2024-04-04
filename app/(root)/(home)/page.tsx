@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
 import { getQuestions, getRecommendedQuestions } from "@/lib/actions/question.action";
 import { SearchParamsProps } from "@/types";
-import { UserButton, auth } from "@clerk/nextjs";
+// import { UserButton, auth } from "@clerk/nextjs";
 import Link from "next/link";
 // import { useTheme } from "@/context/ThemeProvider";
 import type { Metadata } from 'next'
@@ -26,10 +26,10 @@ export default async function Home({ searchParams }: SearchParamsProps) {
 
   let result;
 
-  if (searchParams?.filter == 'recommended') {
+  if (searchParams?.filter === 'recommended') {
     if (userId) {
       result = await getRecommendedQuestions({
-        userId: userId,
+        userId,
         searchQuery: searchParams.q,
         page: searchParams.page ? +searchParams.page : 1
       })

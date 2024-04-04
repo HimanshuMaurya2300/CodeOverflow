@@ -19,7 +19,6 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY;
-// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTIzNDUifQ.gwnm9TKwnrt5FXpaUjfM8Xb0yp5EXzCQWGcXhWKJsrI';
 
 export const VideoCall = ({ roomId }: { roomId: string }) => {
 
