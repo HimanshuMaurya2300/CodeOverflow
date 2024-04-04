@@ -4,6 +4,8 @@ import { GithubIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import { VideoCall } from './video-player'
+import { auth } from '@clerk/nextjs'
+import { getUserById } from '@/lib/actions/user.action'
 
 interface Props {
     params: {
@@ -14,9 +16,13 @@ interface Props {
 const page = async ({ params }: Props) => {
 
     // console.log(params.id)
+    const { userId: clerkId } = auth()
+
+    const user = await getUserById({ userId: clerkId! })
+    // console.log(user)
 
     const room = await getRoomById({ roomId: params.id })
-    console.log(room)
+    // console.log(room)
 
     return (
         <div className='grid grid-cols-3 min-h-screen'>
@@ -24,6 +30,9 @@ const page = async ({ params }: Props) => {
                 <div className='rounded-lg border bg-card text-card-foreground shadow-sm p-4'>
                     <VideoCall
                         roomId={params.id}
+                        clerkId={clerkId!}
+                        name={user.name}
+                        image={user.picture}
                     />
                 </div>
             </div >

@@ -11,8 +11,7 @@ import { Button } from '../ui/button'
 
 const LeftSidebar = () => {
 
-    // const { userId } = useAuth()
-    const userId = '12345'
+    const { userId } = useAuth()
     const pathname = usePathname()
 
     return (

@@ -6,12 +6,13 @@ import { GetAllTagsParams, GetQuestionsByTagIdParams, GetTopInteractedTagsParams
 import Tag, { ITag } from "@/database/tag.model"
 import Question from "@/database/question.model"
 import { FilterQuery } from "mongoose"
+import Interaction from "@/database/interaction.model"
 
 export async function getTopIntercatedTags(params: GetTopInteractedTagsParams) {
     try {
         connectToDatabase()
 
-        const { userId } = params
+        const { userId, limit = 3 } = params
 
         const user = await User.findById(userId)
 
@@ -19,9 +20,37 @@ export async function getTopIntercatedTags(params: GetTopInteractedTagsParams) {
             throw new Error('User not found')
         }
 
-        // interactions
+        // find interactions for the user and group by tags
+        const userInteractions = await Interaction.find({ user: user._id })
+            .populate('tags')
+            .exec()
 
-        return [{ _id: '1', name: 'tag1' }, { _id: '2', name: 'tag2' }]
+        const userTags = userInteractions.reduce((tags, interaction) => {
+
+            if (interaction.tags) {
+                tags = tags.concat(interaction.tags)
+            }
+
+            return tags
+        }, [])
+
+        const distinctUserTagIds = Array.from(
+            new Set(userTags.map((tag: any) => tag._id))
+        )
+
+        const query: FilterQuery<typeof Tag> = {
+            $and: [
+                { _id: { $in: distinctUserTagIds } }
+            ]
+        }
+
+        const topTags = await Tag.find(query)
+
+        topTags.sort((a, b) => b.questions.length - a.questions.length)
+
+        topTags.splice(limit)
+
+        return topTags
 
     } catch (error) {
         console.log(error)
@@ -30,11 +59,11 @@ export async function getTopIntercatedTags(params: GetTopInteractedTagsParams) {
 }
 
 
-export async function getALlTags(params: GetAllTagsParams) {
+export async function getAllTags(params: GetAllTagsParams) {
     try {
         connectToDatabase()
 
-        const { searchQuery, filter, page = 1, pageSize = 6 } = params
+        const { searchQuery, filter, page = 1, pageSize = 9 } = params
 
         const skipAmount = (page - 1) * pageSize
 

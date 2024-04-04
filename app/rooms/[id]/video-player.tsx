@@ -12,22 +12,25 @@ import {
     StreamVideoClient,
     User,
 } from '@stream-io/video-react-sdk';
-import { auth } from '@clerk/nextjs'
 import { useEffect, useState } from 'react';
 import { generateToken } from '@/lib/actions/general.action';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY;
+interface Props {
+    roomId: string
+    clerkId: string
+    name: string
+    image: string
+}
 
-export const VideoCall = ({ roomId }: { roomId: string }) => {
+export const VideoCall = ({ roomId, clerkId, name, image }: Props) => {
 
-    // const { userId: clerkId } = auth()
-    const clerkId = '12345'
     const user: User = {
         id: clerkId,
-        name: 'Clerk User' ?? undefined,
-        image: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50' ?? undefined,
+        name: name,
+        image: image
     };
 
     const [client, setClient] = useState<StreamVideoClient | null>(null);
@@ -39,8 +42,6 @@ export const VideoCall = ({ roomId }: { roomId: string }) => {
     useEffect(() => {
 
         if (!clerkId) return
-
-        let client: any
 
         if (apiKey) {
             const client = new StreamVideoClient({

@@ -19,12 +19,12 @@ const page = async ({ searchParams }: SearchParamsProps) => {
     return (
         <>
             <div>
-                <div className='flex justify-between items-center'>
+                <div className='flex justify-between items-center gap-4'>
                     <h1 className='h1-bold text-dark100_light900'>
-                        Find Dev Rooms
+                        Dev Rooms
                     </h1>
 
-                    <div className='flex gap-4'>
+                    <div className='flex gap-4 max-sm:flex-col'>
                         <Button
                             className='primary-gradient w-fit !text-light-900'
                         >
@@ -56,7 +56,7 @@ const page = async ({ searchParams }: SearchParamsProps) => {
                     />
                 </div>
 
-                <section className='mt-12 flex flex-wrap gap-4 justify-between max-sm:justify-center'>
+                <section className='mt-12 grid max-sm:grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap gap-4 justify-between max-sm:justify-center place-items-center'>
                     {result.rooms.length > 0 ? (result.rooms.map((room) => (
                         <div key={room._id}>
                             <RoomCard

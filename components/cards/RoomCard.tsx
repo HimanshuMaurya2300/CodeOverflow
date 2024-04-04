@@ -17,11 +17,7 @@ interface Props {
 const RoomCard = async ({ name, _id, description, githubRepo, tags }: Props) => {
 
     return (
-        // <Link
-        //     href={`/rooms/${_id}`}
-        //     className='shadow-light100_darknone w-full max-xs:min-w-full xs:w-[260px]'
-        // >
-        <article className='background-light900_dark200 light-border w-[360px] max-md:w-[360px] h-[260px] items-center rounded-2xl border p-8'>
+        <article className='background-light900_dark200 light-border w-[300px] max-sm:w-[290px] sm:w-[270px] lg:w-[300px] h-[300px] items-center rounded-2xl border p-8 pt-4 col-span-1'>
 
             <div className='mt-4'>
                 <h3 className='h3-bold text-dark200_light900 line-clamp-1'>
@@ -70,7 +66,6 @@ const RoomCard = async ({ name, _id, description, githubRepo, tags }: Props) => 
                 </Button>
             </div>
         </article>
-        // </Link>
     )
 }
 

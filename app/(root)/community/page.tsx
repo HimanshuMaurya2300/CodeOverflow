@@ -43,7 +43,7 @@ const page = async ({ searchParams }: SearchParamsProps) => {
                 />
             </div>
 
-            <section className='mt-12 flex flex-wrap gap-4'>
+            <section className='mt-12 grid max-sm:grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap gap-4 justify-between max-sm:justify-center place-items-center'>
                 {result.users.length > 0 ? (
                     result.users.map((user) => (
                         <div key={user.name}>

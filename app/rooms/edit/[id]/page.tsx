@@ -7,8 +7,7 @@ import { ParamsProps } from '@/types'
 
 const page = async ({ params }: ParamsProps) => {
 
-    // const { userId } = auth()
-    const userId = '12345'
+    const { userId } = auth()
 
     if (!userId) {
         return null

@@ -1,23 +1,22 @@
-import RoomCard from '@/components/cards/RoomCard'
 import UserRoomCard from '@/components/cards/UserRoomCard'
 import Pagination from '@/components/shared/Pagination'
-import LocalSearchbar from '@/components/shared/search/LocalSearchbar'
 import { Button } from '@/components/ui/button'
-import { getRooms, getUserRooms } from '@/lib/actions/room.action'
+import { getUserRooms } from '@/lib/actions/room.action'
 import { getUserById } from '@/lib/actions/user.action'
 import { SearchParamsProps } from '@/types'
+import { auth } from '@clerk/nextjs'
 import Link from 'next/link'
 import React from 'react'
 
 const page = async ({ searchParams }: SearchParamsProps) => {
 
     // const rooms = await Room.find()
-    const userId = '12345'
+    const { userId } = auth()
     const user = await getUserById({ userId })
-    // console.log(user)
+    console.log(user)
 
     const result = await getUserRooms({
-        userId: user._id,
+        userId: user?._id,
         page: searchParams?.page ? +searchParams.page : 1,
     })
 
@@ -39,17 +38,7 @@ const page = async ({ searchParams }: SearchParamsProps) => {
                     </Button>
                 </div>
 
-                {/* <div className='mt-4'>
-                    <LocalSearchbar
-                        route='/rooms'
-                        placeholder='Search your rooms by name or tags(languages)'
-                        otherClasses='w-full'
-                        iconPosition='left'
-                        imgSrc='/assets/icons/search.svg'
-                    />
-                </div> */}
-
-                <section className='mt-12 flex flex-wrap gap-4 justify-between max-sm:justify-center'>
+                <section className='mt-12 grid max-sm:grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap gap-4 justify-between max-sm:justify-center place-items-center'>
                     {result.rooms.length > 0 ? (result.rooms.map((room) => (
                         <div key={room._id}>
                             <UserRoomCard

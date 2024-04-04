@@ -189,3 +189,7 @@ code {
 .str-video__generic-menu--item {
   @apply text-light-900
 }
+
+.str-video__participant-details {
+  @apply text-light-900
+}

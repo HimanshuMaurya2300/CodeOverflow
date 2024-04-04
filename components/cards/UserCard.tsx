@@ -19,13 +19,14 @@ interface Props {
 const UserCard = async ({ user }: Props) => {
 
     const interactedTags = await getTopIntercatedTags({ userId: user._id })
+    // console.log(interactedTags)
 
     return (
         <Link
             href={`/profile/${user.clerkId}`}
-            className='shadow-light100_darknone w-full max-xs:min-w-full xs:w-[260px]'
+            className='shadow-light100_darknone'
         >
-            <article className='background-light900_dark200 light-border flex w-full flex-col items-center justify-center rounded-2xl border p-8'>
+            <article className='background-light900_dark200 light-border w-[300px] max-sm:w-[250px] sm:w-[270px] lg:w-[300px] xl:w-[360px] h-[300px] items-center rounded-2xl border p-8 pt-4 col-span-1 justify-center flex flex-col gap-4'>
                 <Image
                     src={user.picture}
                     alt='user profile picture'
@@ -55,7 +56,9 @@ const UserCard = async ({ user }: Props) => {
                                 ))}
                             </div>
                         ) : (
-                            <Badge>
+                            <Badge
+                                className='subtle-medium background-light800_dark300 text-light400_light500 rounded-md border-none px-4 py-2 uppercase'
+                            >
                                 No Tags
                             </Badge>
                         )}

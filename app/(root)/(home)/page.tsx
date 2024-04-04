@@ -8,10 +8,9 @@ import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
 import { getQuestions, getRecommendedQuestions } from "@/lib/actions/question.action";
 import { SearchParamsProps } from "@/types";
-// import { UserButton, auth } from "@clerk/nextjs";
 import Link from "next/link";
-// import { useTheme } from "@/context/ThemeProvider";
 import type { Metadata } from 'next'
+import { auth } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Home | Code-Overflow",
@@ -21,8 +20,7 @@ export const metadata: Metadata = {
 
 export default async function Home({ searchParams }: SearchParamsProps) {
 
-  const userId = '12345'
-  // const { userId } = auth()
+  const { userId } = auth()
 
   let result;
 

@@ -3,14 +3,14 @@ import NoResult from '@/components/shared/NoResult'
 import Pagination from '@/components/shared/Pagination'
 import LocalSearchbar from '@/components/shared/search/LocalSearchbar'
 import { TagFilters } from '@/constants/filters'
-import { getALlTags } from '@/lib/actions/tag.actions'
+import { getAllTags } from '@/lib/actions/tag.actions'
 import { SearchParamsProps } from '@/types'
 import Link from 'next/link'
 import Loading from './loading'
 
 const page = async ({ searchParams }: SearchParamsProps) => {
 
-    const result = await getALlTags({
+    const result = await getAllTags({
         searchQuery: searchParams.q,
         filter: searchParams.filter,
         page: searchParams.page ? +searchParams.page : 1
@@ -47,15 +47,15 @@ const page = async ({ searchParams }: SearchParamsProps) => {
                 />
             </div>
 
-            <section className='mt-12 flex flex-wrap gap-4'>
+            <section className='mt-12 flex flex-wrap gap-4 max-sm:justify-center items-center justify-center'>
                 {result.tags.length > 0 ? (
                     result.tags.map((tag) => (
                         <Link
                             href={`/tags/${tag._id}`}
                             key={tag.name}
-                            className='shadow-light100_darknone'
+                            className='shadow-light100_darknone max-sm:w-[270px] max-md:w-[270px] lg:w-[220px]'
                         >
-                            <article className='background-light900_dark200 light-border flex w-full flex-col rounded-2xl border px-8 py-10 sm:w-[260px]'>
+                            <article className='background-light900_dark200 light-border flex w-full flex-col rounded-2xl border px-8 py-10'>
                                 <div className='background-light800_dark400 w-fit rounded-sm px-5 py-1.5'>
                                     <p className='paragraph-semibold text-dark300_light900'>
                                         {tag.name}

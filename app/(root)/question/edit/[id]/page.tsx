@@ -2,13 +2,12 @@ import Question from '@/components/forms/Question'
 import { getQuestionById } from '@/lib/actions/question.action'
 import { getUserById } from '@/lib/actions/user.action'
 import { ParamsProps } from '@/types'
-// import { auth } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs'
 import React from 'react'
 
 const page = async ({ params }: ParamsProps) => {
 
-    // const { userId } = auth()
-    const userId = '12345'
+    const { userId } = auth()
 
     if (!userId) {
         return null

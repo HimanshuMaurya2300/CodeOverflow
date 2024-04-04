@@ -8,7 +8,7 @@ import { getQuestionById } from '@/lib/actions/question.action'
 import { getUserById } from '@/lib/actions/user.action'
 import { formatAndDivideNumber, getTimeStamp } from '@/lib/utils'
 import { URLProps } from '@/types'
-// import { auth } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -18,15 +18,12 @@ const page = async ({ params, searchParams }: URLProps) => {
     // console.log(params, searchParams)
     const result = await getQuestionById({ questionId: params.id })
 
-    // const { userId: clerkId } = auth()
-    // let mongoUser;
+    const { userId: clerkId } = auth()
+    let mongoUser;
 
-    // if (clerkId) {
-    //     mongoUser = await getUserById({ userId: clerkId })
-    // }
-
-    const userdId = '12345'
-    const mongoUser = await getUserById({ userId: userdId })
+    if (clerkId) {
+        mongoUser = await getUserById({ userId: clerkId })
+    }
 
     console.log(result.answers.length)
 

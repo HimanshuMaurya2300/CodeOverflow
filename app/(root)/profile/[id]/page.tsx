@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { getUserInfo } from '@/lib/actions/user.action'
 import { URLProps } from '@/types'
-import { SignedIn } from '@clerk/nextjs'
+import { SignedIn, auth } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -16,8 +16,7 @@ import Loading from './loading'
 
 const page = async ({ params, searchParams }: URLProps) => {
 
-    // const { userId: clerkId } = auth()
-    const clerkId = '12345'
+    const { userId: clerkId } = auth()
     const userInfo: any = await getUserInfo({ userId: params.id })
 
     const loading = false
