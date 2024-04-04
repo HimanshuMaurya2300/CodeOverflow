@@ -41,26 +41,30 @@ export const VideoCall = ({ roomId }: { roomId: string }) => {
 
         if (!clerkId) return
 
-        const client = new StreamVideoClient({
-            apiKey,
-            user,
-            tokenProvider: () => generateToken(),
-            // token,
-        });
+        let client: any
 
-        setClient(client);
+        if (apiKey) {
+            const client = new StreamVideoClient({
+                apiKey,
+                user,
+                tokenProvider: () => generateToken(),
+                // token,
+            });
+            setClient(client);
 
-        const call = client.call('default', roomId);
-        call.join({ create: true });
-        setCall(call);
+            const call = client.call('default', roomId);
+            call.join({ create: true });
+            setCall(call);
 
-        return () => {
-            call.leave()
-                .then(() => {
-                    client?.disconnectUser();
-                })
-                .catch(console.error);
+            return () => {
+                call.leave()
+                    .then(() => {
+                        client?.disconnectUser();
+                    })
+                    .catch(console.error);
+            }
         }
+
     }, [clerkId])
 
     return (

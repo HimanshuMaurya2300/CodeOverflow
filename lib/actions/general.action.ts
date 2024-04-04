@@ -90,6 +90,9 @@ export async function generateToken() {
     const api_key = process.env.NEXT_PUBLIC_STREAM_API_KEY
     const api_secret = process.env.NEXT_PUBLIC_STREAM_SECRET
 
+    if (!api_key || !api_secret) {
+        throw new Error('Missing API key or secret')
+    }
     // Initialize a Server Client
     const serverClient = StreamChat.getInstance(api_key, api_secret);
     // Create User Token
