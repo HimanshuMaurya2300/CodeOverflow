@@ -9,7 +9,7 @@ import { FilterQuery } from "mongoose"
 
 export async function createRoom(params: CreateRoomParams) {
     try {
-        //connect to db
+        // connect to db
         await connectToDatabase()
 
         const { name, description, tags, githubRepo, author, path } = params
@@ -34,7 +34,7 @@ export async function createRoom(params: CreateRoomParams) {
 
 export async function getRooms(params: GetRoomsParams) {
     try {
-        //connect to db
+        // connect to db
         await connectToDatabase()
 
         const { searchQuery, page = 1, pageSize = 10 } = params
@@ -71,7 +71,7 @@ export async function getRooms(params: GetRoomsParams) {
 
 export async function getUserRooms(params: GetUserRoomsParams) {
     try {
-        //connect to db
+        // connect to db
         await connectToDatabase()
 
         const { userId, page = 1, pageSize = 10 } = params
@@ -98,7 +98,7 @@ export async function getUserRooms(params: GetUserRoomsParams) {
 
 export async function getRoomById(params: GetRoomByIdParams) {
     try {
-        //connect to db
+        // connect to db
         await connectToDatabase()
 
         const { roomId } = params
@@ -115,7 +115,7 @@ export async function getRoomById(params: GetRoomByIdParams) {
 
 export async function deleteRoom(params: DeleteRoomParams) {
     try {
-        //connect to db
+        // connect to db
         await connectToDatabase()
 
         const { roomId, path } = params
@@ -133,7 +133,7 @@ export async function deleteRoom(params: DeleteRoomParams) {
 
 export async function editRoom(params: EditRoomParams) {
     try {
-        //connect to db
+        // connect to db
         await connectToDatabase()
 
         const { roomId, name, description, githubRepo, path } = params

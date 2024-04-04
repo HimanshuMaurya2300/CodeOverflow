@@ -6,7 +6,7 @@ const Loading = () => {
         <section>
             <div className='flex flex-col-reverse items-start justify-between sm:flex-row'>
                 <div className='flex flex-col items-start gap-4 lg:flex-row'>
-                    <Skeleton className='w-40 h-40 rounded-full object-cover bg-slate-100' />
+                    <Skeleton className='size-40 rounded-full bg-slate-100 object-cover' />
 
                     <div className='mt-3'>
                         <Skeleton className='h-14 w-80 bg-slate-100' />
@@ -19,7 +19,7 @@ const Loading = () => {
                         </div>
                     </div>
 
-                    <div className='flex justify-end max-sm:mb-5 max-sm-full sm:mt-3'>
+                    <div className='flex justify-end max-sm:mb-5 sm:mt-3'>
                         <Skeleton className='h-10 w-40 bg-slate-100' />
                     </div>
                 </div>
@@ -43,7 +43,10 @@ const Loading = () => {
 
                     <div className='mt-5 flex w-full flex-col gap-6'>
                         {[1, 2, 3, 4, 5].map((item) => (
-                            <Skeleton className='h-48 w-full rounded-xl bg-slate-100' />
+                            <Skeleton
+                                key={item}
+                                className='h-48 w-full rounded-xl bg-slate-100'
+                            />
                         ))}
                     </div>
                 </div>

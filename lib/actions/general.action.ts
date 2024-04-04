@@ -87,14 +87,14 @@ export async function generateToken() {
     if (!userId) throw new Error('Session not found')
 
     // Define values.
-    const api_key = process.env.NEXT_PUBLIC_STREAM_API_KEY
-    const api_secret = process.env.NEXT_PUBLIC_STREAM_SECRET
+    const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY
+    const apiSecret = process.env.NEXT_PUBLIC_STREAM_SECRET
 
-    if (!api_key || !api_secret) {
+    if (!apiKey || !apiSecret) {
         throw new Error('Missing API key or secret')
     }
     // Initialize a Server Client
-    const serverClient = StreamChat.getInstance(api_key, api_secret);
+    const serverClient = StreamChat.getInstance(apiKey, apiSecret);
     // Create User Token
     const token = serverClient.createToken(userId);
 

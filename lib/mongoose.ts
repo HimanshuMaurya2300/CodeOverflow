@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-let isConnected: boolean = false
+// let isConnected: boolean = false
 
 export const connectToDatabase = async () => {
     mongoose.set('strictQuery', true)
@@ -17,7 +17,7 @@ export const connectToDatabase = async () => {
         await mongoose.connect(process.env.MONGODB_URL, {
             dbName: 'code-overflow',
         })
-        isConnected = true
+        // isConnected = true
         console.log('Database connected...')
     } catch (error) {
         console.log('MongoDB connection failed', error)

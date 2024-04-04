@@ -2,7 +2,7 @@
 
 import User from "@/database/user.model"
 import { connectToDatabase } from "../mongoose"
-import { GetAllTagsParams, GetQuestionByIdParams, GetQuestionsByTagIdParams, GetTopInteractedTagsParams } from "./shared.types"
+import { GetAllTagsParams, GetQuestionsByTagIdParams, GetTopInteractedTagsParams } from "./shared.types"
 import Tag, { ITag } from "@/database/tag.model"
 import Question from "@/database/question.model"
 import { FilterQuery } from "mongoose"

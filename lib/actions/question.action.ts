@@ -66,7 +66,7 @@ export async function getQuestions(params: GetQuestionsParams) {
 
 export async function createQuestion(params: CreateQuestionParams) {
     try {
-        //connect to db
+        // connect to db
         await connectToDatabase()
 
         const { title, content, tags, author, path } = params
@@ -310,9 +310,9 @@ export async function getRecommendedQuestions(params: RecommendedParams) {
             return tags
         }, [])
 
-        const distinctUserTagIds = [
-            ...new Set(userTags.map((tag: any) => tag._id))
-        ]
+        const distinctUserTagIds = Array.from(
+            new Set(userTags.map((tag: any) => tag._id))
+        )
 
         const query: FilterQuery<typeof Question> = {
             $and: [
